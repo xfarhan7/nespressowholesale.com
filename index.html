@@ -690,6 +690,7 @@ footer a{text-decoration:none}.footer-top a{color:var(--mid);font-size:.6rem;let
 <div id="promo-bar">
   B2B Trade Only — Request your pallet pricing now
   <button id="promo-close" onclick="document.getElementById('promo-bar').style.display='none'" aria-label="Close">&#x2715;</button>
+</div>
 
 <div class="disc">
   <span>Independent wholesale distributor</span> — Coffee Wholesale is an independent distributor, not affiliated with, endorsed by, or connected to Nestlé Nespresso S.A.
@@ -832,19 +833,20 @@ footer a{text-decoration:none}.footer-top a{color:var(--mid);font-size:.6rem;let
   <div class="conlay">
     <form class="conform" id="conForm" action="https://formspree.io/f/mvzvqzdb" method="POST">
       <div class="frow">
-        <div class="ff"><label>First Name</label><input type="text" placeholder="John" required/></div>
-        <div class="ff"><label>Last Name</label><input type="text" placeholder="Smith" required/></div>
+        <div class="ff"><label>First Name</label><input type="text" name="first_name" placeholder="John" required/></div>
+        <div class="ff"><label>Last Name</label><input type="text" name="last_name" placeholder="Smith" required/></div>
       </div>
       <div class="frow">
-        <div class="ff"><label>Company</label><input type="text" placeholder="Your Company Ltd" required/></div>
+        <div class="ff"><label>Company</label><input type="text" name="company" placeholder="Your Company Ltd" required/></div>
         <div class="ff"><label>Business Type</label>
-          <select required><option value="" disabled selected>Select type</option><option>Hotel / Hospitality</option><option>Office / Corporate</option><option>Café / Restaurant</option><option>Wholesale Reseller</option><option>Other</option></select>
+          <select name="business_type" required><option value="" disabled selected>Select type</option><option>Hotel / Hospitality</option><option>Office / Corporate</option><option>Café / Restaurant</option><option>Wholesale Reseller</option><option>Other</option></select>
         </div>
       </div>
-      <div class="ff"><label>Email Address</label><input type="email" placeholder="john@company.com" required/></div>
-      <div class="ff"><label>Products of Interest</label><input type="text" placeholder="e.g. Original Line Ristretto, Vertuo Espresso..."/></div>
-      <div class="ff"><label>Message / Estimated Quantity</label><textarea placeholder="Tell us your requirements — volumes, frequency, delivery location..."></textarea></div>
+      <div class="ff"><label>Email Address</label><input type="email" name="email" placeholder="john@company.com" required/></div>
+      <div class="ff"><label>Products of Interest</label><input type="text" name="products_of_interest" placeholder="e.g. Original Line Ristretto, Vertuo Espresso..."/></div>
+      <div class="ff"><label>Message / Estimated Quantity</label><textarea name="message" placeholder="Tell us your requirements - volumes, frequency, delivery location..."></textarea></div>
       <input type="hidden" name="_replyto" value="farhan@bfglobalsolutions.nl"/>
+      <input type="hidden" name="_subject" value="New Wholesale Enquiry - Coffee Wholesale"/>
       <input type="hidden" name="_subject" value="New Wholesale Enquiry — Coffee Wholesale"/>
       <input type="hidden" name="_next" value=""/>
       <button type="submit" class="fsub">Send Enquiry →</button>
@@ -890,7 +892,7 @@ document.querySelectorAll('.penq').forEach(l=>l.addEventListener('click',e=>{e.p
 /* FORM */
 function doSub(e){e.preventDefault();const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);e.target.reset();}
 
-/* ── PREMIUM 3D HERO TILT ── */
+/* -- PREMIUM 3D HERO TILT -- */
 (function(){
   const wrap  = document.getElementById('hero3d');
   const inner = document.getElementById('h3dInner');
@@ -1078,16 +1080,16 @@ function cw_hide_typing() {
 
 function cw_reply(q) {
   if (q.match(/hello|hi|hey|morning|afternoon|help|start|who/))
-    return "Hello! Great to hear from you 👋
+    return "Hello! Great to hear from you 
 I can help with:
-• Our capsule range
-• Wholesale pricing & quotes
-• Worldwide delivery
-• How to place an order
+- Our capsule range
+- Wholesale pricing & quotes
+- Worldwide delivery
+- How to place an order
 
 What can I help you with?";
   if (q.match(/capsule|product|supply|range|original|vertuo|flavou|variety|what do you/))
-    return "We supply the full Original Line range — intensities 5 to 13 — including Master Origin and Barista Creations, plus the complete Vertuo range in all cup sizes.
+    return "We supply the full Original Line range  -  intensities 5 to 13  -  including Master Origin and Barista Creations, plus the complete Vertuo range in all cup sizes.
 
 All available in carton and pallet quantities. Want the full product list? Fill in our enquiry form!";
   if (q.match(/price|cost|quote|pricing|rate|how much|wholesale|tarif/))
@@ -1099,7 +1101,7 @@ Fill in our enquiry form and we will get back to you within 1 business day!";
 
 Tell us what you need in the enquiry form and we will confirm straight away!";
   if (q.match(/ship|deliver|worldwide|country|location|global|international|europe|middle|asia|uk/))
-    return "Yes — we ship worldwide! EU, UK, Middle East, Asia and beyond. We arrange pallet freight, air freight or sea freight depending on your destination and order size.";
+    return "Yes  -  we ship worldwide! EU, UK, Middle East, Asia and beyond. We arrange pallet freight, air freight or sea freight depending on your destination and order size.";
   if (q.match(/how.*order|place.*order|start|begin|buy|purchase|process/))
     return "Simple 4-step process:
 1. Fill in our enquiry form
@@ -1109,20 +1111,20 @@ Tell us what you need in the enquiry form and we will confirm straight away!";
 
 Ready to get started?";
   if (q.match(/dispatch|lead time|how long|when|delivery time|days|week/))
-    return "Dispatch time depends on the quantity and product mix — we confirm the exact lead time with your quote.
+    return "Dispatch time depends on the quantity and product mix  -  we confirm the exact lead time with your quote.
 
 Fill in the enquiry form to get started!";
   if (q.match(/hotel|office|caf|restaurant|resell|hospitality|corporate|business/))
-    return "We work with hotels, offices, cafés, restaurants and wholesale resellers worldwide. Whatever your volume, we can accommodate it.
+    return "We work with hotels, offices, cafes, restaurants and wholesale resellers worldwide. Whatever your volume, we can accommodate it.
 
 Fill in the enquiry form and tell us about your business!";
   if (q.match(/nespresso|affiliated|official|nestle|genuine|brand/))
-    return "Coffee Wholesale is an independent wholesale distributor. We are not affiliated with Nestlé Nespresso S.A. We supply genuine capsules to trade buyers worldwide.";
+    return "Coffee Wholesale is an independent wholesale distributor. We are not affiliated with Nestle Nespresso S.A. We supply genuine capsules to trade buyers worldwide.";
   if (q.match(/contact|email|phone|reach|speak|call|talk|get in touch/))
     return "The best way to reach us is through the enquiry form on this page. Fill it in and our team will respond within 1 business day!";
   if (q.match(/thank|thanks|great|perfect|awesome|good/))
     return "You are welcome! Is there anything else I can help you with?";
-  return "Thanks for your question! For the most accurate answer, please fill in our enquiry form — our team will get back to you with everything you need within 1 business day.";
+  return "Thanks for your question! For the most accurate answer, please fill in our enquiry form  -  our team will get back to you with everything you need within 1 business day.";
 }
 </script>
 
@@ -1172,164 +1174,153 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape') lbClose()
 
 
 
+
+
+</html>
 <script>
-/* LANG */
+/* === LANGUAGE SWITCHER === */
 var L = {
-  en: {
-    promo:'B2B Trade Only — Request your pallet pricing now',
-    disc:'Independent wholesale distributor — Coffee Wholesale is not affiliated with Nestlé Nespresso S.A.',
-    np:'Products', nh:'How It Works', nc:'Contact', nb:'Get a Quote',
-    badge:'B2B Wholesale Supply',
-    ht:'Premium Coffee Capsules <em>at Scale.</em>',
-    hd:'We supply premium coffee capsules — Original Line and Vertuo — to hotels, offices, cafés, and retailers worldwide. Competitive pricing, consistent availability, and seamless worldwide delivery.',
-    b1:'Browse Products',
-    wtag:'Why Choose Us', wti:'The trusted wholesale partner for <em>trade buyers</em> worldwide',
-    w1t:'Pallet Quantities', w1d:'From single cartons to full pallet orders — we accommodate all trade volumes.',
-    w2t:'Wholesale Pricing', w2d:'Tiered trade pricing across sleeve, carton and pallet quantities. Tailored quotes on request.',
-    w3t:'Worldwide Delivery', w3d:'We ship to any destination globally. Pallet, air freight or sea.',
-    w4t:'Personal Account', w4d:'Every trade client gets a dedicated contact. Fast responses, custom quotes.',
-    ctag:'Product Catalogue', cti:'Our <em>Range</em>',
-    htag:'The Process', hti:'Ordering is <em>simple</em>',
-    s1t:'Browse & Select', s1d:'Browse our range and note the lines and quantities you need.',
-    s2t:'Send Enquiry', s2d:'Fill in our contact form with your requirements and company details.',
-    s3t:'Receive Quote', s3d:"We'll send a personalised pricing sheet within 24 business hours.",
-    s4t:'Confirm & Ship', s4d:'Confirm your order and we dispatch with full tracking.',
-    kontag:'Get In Touch', konti:'Ready to <em>order at scale?</em>',
-    konsub:'Fill in the form and our team will respond with a tailored quote within 1 business day.',
-    fw:'Coffee Wholesale', fs:'Independent Distributor',
-    copy:'© 2025 Coffee Wholesale · All rights reserved', dir:'ltr'
+  en:{
+    promo:"B2B Trade Only  -  Request your pallet pricing now",
+    disc:"Independent wholesale distributor  -  Coffee Wholesale is not affiliated with Nestl\u00e9 Nespresso S.A.",
+    np:"Products",nh:"How It Works",nc:"Contact",nb:"Get a Quote",
+    badge:"B2B Wholesale Supply",
+    ht:"Premium Coffee Capsules <em>at Scale.</em>",
+    hd:"We supply premium coffee capsules  -  Original Line and Vertuo  -  to hotels, offices, caf\u00e9s, and retailers worldwide. Competitive pricing, consistent availability, and seamless worldwide delivery.",
+    b1:"Browse Products",
+    wtag:"Why Choose Us",wti:"The trusted wholesale partner for <em>trade buyers</em> worldwide",
+    w1t:"Pallet Quantities",w1d:"From single cartons to full pallet orders  -  we accommodate all trade volumes.",
+    w2t:"Wholesale Pricing",w2d:"Tiered trade pricing across sleeve, carton and pallet quantities. Tailored quotes on request.",
+    w3t:"Worldwide Delivery",w3d:"We ship to any destination globally. Pallet, air freight or sea.",
+    w4t:"Personal Account",w4d:"Every trade client gets a dedicated contact. Fast responses, custom quotes.",
+    ctag:"Product Catalogue",cti:"Our <em>Range</em>",
+    htag:"The Process",hti:"Ordering is <em>simple</em>",
+    s1t:"Browse & Select",s1d:"Browse our range and note the lines and quantities you need.",
+    s2t:"Send Enquiry",s2d:"Fill in our contact form with your requirements and company details.",
+    s3t:"Receive Quote",s3d:"We will send a personalised pricing sheet within 24 business hours.",
+    s4t:"Confirm & Ship",s4d:"Confirm your order and we dispatch with full tracking.",
+    kontag:"Get In Touch",konti:"Ready to <em>order at scale?</em>",
+    konsub:"Fill in the form and our team will respond with a tailored quote within 1 business day.",
+    fw:"Coffee Wholesale",fs:"Independent Distributor",
+    copy:"\u00a9 2025 Coffee Wholesale \u00b7 All rights reserved",dir:"ltr"
   },
-  nl: {
-    promo:'Alleen B2B — Vraag nu uw palletprijzen aan',
-    disc:'Onafhankelijke groothandelsdistributeur — Coffee Wholesale is niet gelieerd aan Nestlé Nespresso S.A.',
-    np:'Producten', nh:'Hoe het werkt', nc:'Contact', nb:'Offerte aanvragen',
-    badge:'B2B Groothandel',
-    ht:'Premium koffiecapsules <em>op schaal.</em>',
-    hd:'Wij leveren premium koffiecapsules aan hotels, kantoren, cafés en retailers wereldwijd. Concurrerende prijzen en naadloze levering.',
-    b1:'Bekijk producten',
-    wtag:'Waarom ons', wti:'De vertrouwde groothandelspartner voor <em>handelsinkopers</em>',
-    w1t:'Palletaantallen', w1d:'Van enkele dozen tot volledige pallets — wij accommoderen alle handelsvolumes.',
-    w2t:'Groothandelsprijzen', w2d:'Gelaagde handelsprijzen. Op maat gemaakte offertes op verzoek.',
-    w3t:'Wereldwijde levering', w3d:'Wij leveren aan elke bestemming wereldwijd.',
-    w4t:'Persoonlijk account', w4d:'Elke klant krijgt een toegewijde contactpersoon.',
-    ctag:'Productcatalogus', cti:'Ons <em>assortiment</em>',
-    htag:'Het proces', hti:'Bestellen is <em>eenvoudig</em>',
-    s1t:'Bekijk & kies', s1d:'Blader door ons assortiment en noteer de gewenste lijnen.',
-    s2t:'Stuur aanvraag', s2d:'Vul ons contactformulier in met uw vereisten.',
-    s3t:'Ontvang offerte', s3d:'Wij sturen u binnen 24 uur een persoonlijk prijsblad.',
-    s4t:'Bevestig & verzend', s4d:'Bevestig uw bestelling en wij verzenden met volledige tracking.',
-    kontag:'Neem contact op', konti:'Klaar om <em>op schaal te bestellen?</em>',
-    konsub:'Vul het formulier in en ons team reageert binnen 1 werkdag met een offerte.',
-    fw:'Coffee Wholesale', fs:'Onafhankelijke Distributeur',
-    copy:'© 2025 Coffee Wholesale · Alle rechten voorbehouden', dir:'ltr'
+  nl:{
+    promo:"Alleen B2B  -  Vraag nu uw palletprijzen aan",
+    disc:"Onafhankelijke groothandelsdistributeur  -  Coffee Wholesale is niet gelieerd aan Nestl\u00e9 Nespresso S.A.",
+    np:"Producten",nh:"Hoe het werkt",nc:"Contact",nb:"Offerte aanvragen",
+    badge:"B2B Groothandel",
+    ht:"Premium koffiecapsules <em>op schaal.</em>",
+    hd:"Wij leveren premium koffiecapsules aan hotels, kantoren, caf\u00e9s en retailers wereldwijd. Concurrerende prijzen en naadloze levering.",
+    b1:"Bekijk producten",
+    wtag:"Waarom ons",wti:"De vertrouwde groothandelspartner voor <em>handelsinkopers</em>",
+    w1t:"Palletaantallen",w1d:"Van enkele dozen tot volledige pallets  -  wij accommoderen alle handelsvolumes.",
+    w2t:"Groothandelsprijzen",w2d:"Gelaagde handelsprijzen. Op maat gemaakte offertes op verzoek.",
+    w3t:"Wereldwijde levering",w3d:"Wij leveren aan elke bestemming wereldwijd.",
+    w4t:"Persoonlijk account",w4d:"Elke klant krijgt een toegewijde contactpersoon.",
+    ctag:"Productcatalogus",cti:"Ons <em>assortiment</em>",
+    htag:"Het proces",hti:"Bestellen is <em>eenvoudig</em>",
+    s1t:"Bekijk & kies",s1d:"Blader door ons assortiment en noteer de gewenste lijnen.",
+    s2t:"Stuur aanvraag",s2d:"Vul ons contactformulier in met uw vereisten.",
+    s3t:"Ontvang offerte",s3d:"Wij sturen u binnen 24 uur een persoonlijk prijsblad.",
+    s4t:"Bevestig & verzend",s4d:"Bevestig uw bestelling en wij verzenden met volledige tracking.",
+    kontag:"Neem contact op",konti:"Klaar om <em>op schaal te bestellen?</em>",
+    konsub:"Vul het formulier in en ons team reageert binnen 1 werkdag met een offerte.",
+    fw:"Coffee Wholesale",fs:"Onafhankelijke Distributeur",
+    copy:"\u00a9 2025 Coffee Wholesale \u00b7 Alle rechten voorbehouden",dir:"ltr"
   },
-  ru: {
-    promo:'Только для бизнеса — запросите оптовые цены',
-    disc:'Независимый оптовый дистрибьютор — Coffee Wholesale не связан с Nestlé Nespresso S.A.',
-    np:'Продукты', nh:'Как это работает', nc:'Контакты', nb:'Получить предложение',
-    badge:'Оптовые поставки B2B',
-    ht:'Премиальные кофейные капсулы <em>в масштабе.</em>',
-    hd:'Мы поставляем премиальные кофейные капсулы отелям, офисам, кафе и ритейлерам по всему миру.',
-    b1:'Смотреть продукты',
-    wtag:'Почему мы', wti:'Надёжный оптовый партнёр для <em>оптовых покупателей</em>',
-    w1t:'Паллетные количества', w1d:'От одной коробки до полных паллетов.',
-    w2t:'Оптовые цены', w2d:'Многоуровневые цены. Индивидуальные предложения по запросу.',
-    w3t:'Доставка по миру', w3d:'Доставляем в любую точку мира.',
-    w4t:'Личный аккаунт', w4d:'Каждый клиент получает выделенного менеджера.',
-    ctag:'Каталог продуктов', cti:'Наш <em>ассортимент</em>',
-    htag:'Процесс', hti:'Заказать <em>просто</em>',
-    s1t:'Просмотр и выбор', s1d:'Просмотрите ассортимент и выберите нужное.',
-    s2t:'Отправить запрос', s2d:'Заполните контактную форму.',
-    s3t:'Получить предложение', s3d:'Мы вышлем прайс-лист в течение 24 часов.',
-    s4t:'Подтвердить и отправить', s4d:'Подтвердите заказ — отправим с полным отслеживанием.',
-    kontag:'Свяжитесь', konti:'Готовы <em>заказывать в масштабе?</em>',
-    konsub:'Заполните форму — ответим с предложением в течение 1 рабочего дня.',
-    fw:'Coffee Wholesale', fs:'Независимый Дистрибьютор',
-    copy:'© 2025 Coffee Wholesale · Все права защищены', dir:'ltr'
+  ru:{
+    promo:"\u0422\u043e\u043b\u044c\u043a\u043e \u0434\u043b\u044f \u0431\u0438\u0437\u043d\u0435\u0441\u0430  -  \u0437\u0430\u043f\u0440\u043e\u0441\u0438\u0442\u0435 \u043e\u043f\u0442\u043e\u0432\u044b\u0435 \u0446\u0435\u043d\u044b",
+    disc:"\u041d\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043c\u044b\u0439 \u043e\u043f\u0442\u043e\u0432\u044b\u0439 \u0434\u0438\u0441\u0442\u0440\u0438\u0431\u044c\u044e\u0442\u043e\u0440  -  Coffee Wholesale \u043d\u0435 \u0441\u0432\u044f\u0437\u0430\u043d \u0441 Nestl\u00e9 Nespresso S.A.",
+    np:"\u041f\u0440\u043e\u0434\u0443\u043a\u0442\u044b",nh:"\u041a\u0430\u043a \u044d\u0442\u043e \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442",nc:"\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b",nb:"\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435",
+    badge:"\u041e\u043f\u0442\u043e\u0432\u044b\u0435 \u043f\u043e\u0441\u0442\u0430\u0432\u043a\u0438 B2B",
+    ht:"\u041f\u0440\u0435\u043c\u0438\u0430\u043b\u044c\u043d\u044b\u0435 \u043a\u043e\u0444\u0435\u0439\u043d\u044b\u0435 \u043a\u0430\u043f\u0441\u0443\u043b\u044b <em>\u0432 \u043c\u0430\u0441\u0448\u0442\u0430\u0431\u0435.</em>",
+    hd:"\u041c\u044b \u043f\u043e\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u043c \u043f\u0440\u0435\u043c\u0438\u0430\u043b\u044c\u043d\u044b\u0435 \u043a\u043e\u0444\u0435\u0439\u043d\u044b\u0435 \u043a\u0430\u043f\u0441\u0443\u043b\u044b \u043e\u0442\u0435\u043b\u044f\u043c, \u043e\u0444\u0438\u0441\u0430\u043c, \u043a\u0430\u0444\u0435 \u0438 \u0440\u0438\u0442\u0435\u0439\u043b\u0435\u0440\u0430\u043c \u043f\u043e \u0432\u0441\u0435\u043c\u0443 \u043c\u0438\u0440\u0443.",
+    b1:"\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u044b",
+    wtag:"\u041f\u043e\u0447\u0435\u043c\u0443 \u043c\u044b",wti:"\u041d\u0430\u0434\u0451\u0436\u043d\u044b\u0439 \u043e\u043f\u0442\u043e\u0432\u044b\u0439 \u043f\u0430\u0440\u0442\u043d\u0451\u0440 \u0434\u043b\u044f <em>\u043e\u043f\u0442\u043e\u0432\u044b\u0445 \u043f\u043e\u043a\u0443\u043f\u0430\u0442\u0435\u043b\u0435\u0439</em>",
+    w1t:"\u041f\u0430\u043b\u043b\u0435\u0442\u043d\u044b\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u0430",w1d:"\u041e\u0442 \u043e\u0434\u043d\u043e\u0439 \u043a\u043e\u0440\u043e\u0431\u043a\u0438 \u0434\u043e \u043f\u043e\u043b\u043d\u044b\u0445 \u043f\u0430\u043b\u043b\u0435\u0442\u043e\u0432.",
+    w2t:"\u041e\u043f\u0442\u043e\u0432\u044b\u0435 \u0446\u0435\u043d\u044b",w2d:"\u041c\u043d\u043e\u0433\u043e\u0443\u0440\u043e\u0432\u043d\u0435\u0432\u044b\u0435 \u0446\u0435\u043d\u044b. \u0418\u043d\u0434\u0438\u0432\u0438\u0434\u0443\u0430\u043b\u044c\u043d\u044b\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u044f \u043f\u043e \u0437\u0430\u043f\u0440\u043e\u0441\u0443.",
+    w3t:"\u0414\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u043f\u043e \u043c\u0438\u0440\u0443",w3d:"\u0414\u043e\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u043c \u0432 \u043b\u044e\u0431\u0443\u044e \u0442\u043e\u0447\u043a\u0443 \u043c\u0438\u0440\u0430.",
+    w4t:"\u041b\u0438\u0447\u043d\u044b\u0439 \u0430\u043a\u043a\u0430\u0443\u043d\u0442",w4d:"\u041a\u0430\u0436\u0434\u044b\u0439 \u043a\u043b\u0438\u0435\u043d\u0442 \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u0442 \u0432\u044b\u0434\u0435\u043b\u0435\u043d\u043d\u043e\u0433\u043e \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430.",
+    ctag:"\u041a\u0430\u0442\u0430\u043b\u043e\u0433",cti:"\u041d\u0430\u0448 <em>\u0430\u0441\u0441\u043e\u0440\u0442\u0438\u043c\u0435\u043d\u0442</em>",
+    htag:"\u041f\u0440\u043e\u0446\u0435\u0441\u0441",hti:"\u0417\u0430\u043a\u0430\u0437\u0430\u0442\u044c <em>\u043f\u0440\u043e\u0441\u0442\u043e</em>",
+    s1t:"\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440",s1d:"\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440\u0438\u0442\u0435 \u0430\u0441\u0441\u043e\u0440\u0442\u0438\u043c\u0435\u043d\u0442.",
+    s2t:"\u0417\u0430\u043f\u0440\u043e\u0441",s2d:"\u0417\u0430\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u043d\u0443\u044e \u0444\u043e\u0440\u043c\u0443.",
+    s3t:"\u041f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435",s3d:"\u0412\u044b\u0448\u043b\u0435\u043c \u043f\u0440\u0430\u0439\u0441-\u043b\u0438\u0441\u0442 \u0432 \u0442\u0435\u0447\u0435\u043d\u0438\u0435 24 \u0447\u0430\u0441\u043e\u0432.",
+    s4t:"\u041e\u0442\u043f\u0440\u0430\u0432\u043a\u0430",s4d:"\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u0437\u0430\u043a\u0430\u0437  -  \u043e\u0442\u043f\u0440\u0430\u0432\u0438\u043c \u0441 \u043e\u0442\u0441\u043b\u0435\u0436\u0438\u0432\u0430\u043d\u0438\u0435\u043c.",
+    kontag:"\u0421\u0432\u044f\u0436\u0438\u0442\u0435\u0441\u044c",konti:"\u0413\u043e\u0442\u043e\u0432\u044b <em>\u0437\u0430\u043a\u0430\u0437\u044b\u0432\u0430\u0442\u044c?</em>",
+    konsub:"\u0417\u0430\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u0444\u043e\u0440\u043c\u0443  -  \u043e\u0442\u0432\u0435\u0442\u0438\u043c \u0432 \u0442\u0435\u0447\u0435\u043d\u0438\u0435 1 \u0440\u0430\u0431\u043e\u0447\u0435\u0433\u043e \u0434\u043d\u044f.",
+    fw:"Coffee Wholesale",fs:"\u041d\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043c\u044b\u0439 \u0414\u0438\u0441\u0442\u0440\u0438\u0431\u044c\u044e\u0442\u043e\u0440",
+    copy:"\u00a9 2025 Coffee Wholesale \u00b7 \u0412\u0441\u0435 \u043f\u0440\u0430\u0432\u0430 \u0437\u0430\u0449\u0438\u0449\u0435\u043d\u044b",dir:"ltr"
   },
-  es: {
-    promo:'Solo B2B — Solicite precios de palé ahora',
-    disc:'Distribuidor mayorista independiente — Coffee Wholesale no está afiliado a Nestlé Nespresso S.A.',
-    np:'Productos', nh:'Cómo funciona', nc:'Contacto', nb:'Obtener cotización',
-    badge:'Suministro mayorista B2B',
-    ht:'Cápsulas de café premium <em>a escala.</em>',
-    hd:'Suministramos cápsulas de café premium a hoteles, oficinas, cafés y minoristas de todo el mundo.',
-    b1:'Ver productos',
-    wtag:'Por qué elegirnos', wti:'El socio mayorista de confianza para <em>compradores B2B</em>',
-    w1t:'Cantidades en palé', w1d:'Desde cajas individuales hasta palés completos.',
-    w2t:'Precios mayoristas', w2d:'Precios por niveles. Cotizaciones personalizadas a pedido.',
-    w3t:'Entrega mundial', w3d:'Enviamos a cualquier destino del mundo.',
-    w4t:'Cuenta personal', w4d:'Cada cliente tiene un contacto dedicado.',
-    ctag:'Catálogo de productos', cti:'Nuestra <em>gama</em>',
-    htag:'El proceso', hti:'Pedir es <em>simple</em>',
-    s1t:'Explorar y elegir', s1d:'Explore nuestra gama y anote las líneas y cantidades.',
-    s2t:'Enviar consulta', s2d:'Complete nuestro formulario con sus requisitos.',
-    s3t:'Recibir cotización', s3d:'Le enviaremos una hoja de precios en 24 horas.',
-    s4t:'Confirmar y enviar', s4d:'Confirme su pedido y enviamos con seguimiento completo.',
-    kontag:'Contáctenos', konti:'¿Listo para <em>pedir a escala?</em>',
-    konsub:'Complete el formulario y nuestro equipo responderá con una cotización en 1 día hábil.',
-    fw:'Coffee Wholesale', fs:'Distribuidor Independiente',
-    copy:'© 2025 Coffee Wholesale · Todos los derechos reservados', dir:'ltr'
+  es:{
+    promo:"Solo B2B  -  Solicite precios de pal\u00e9 ahora",
+    disc:"Distribuidor mayorista independiente  -  Coffee Wholesale no est\u00e1 afiliado a Nestl\u00e9 Nespresso S.A.",
+    np:"Productos",nh:"C\u00f3mo funciona",nc:"Contacto",nb:"Obtener cotizaci\u00f3n",
+    badge:"Suministro mayorista B2B",
+    ht:"C\u00e1psulas de caf\u00e9 premium <em>a escala.</em>",
+    hd:"Suministramos c\u00e1psulas de caf\u00e9 premium a hoteles, oficinas, caf\u00e9s y minoristas de todo el mundo.",
+    b1:"Ver productos",
+    wtag:"Por qu\u00e9 elegirnos",wti:"El socio mayorista de confianza para <em>compradores B2B</em>",
+    w1t:"Cantidades en pal\u00e9",w1d:"Desde cajas individuales hasta pal\u00e9s completos.",
+    w2t:"Precios mayoristas",w2d:"Precios por niveles. Cotizaciones personalizadas a pedido.",
+    w3t:"Entrega mundial",w3d:"Enviamos a cualquier destino del mundo.",
+    w4t:"Cuenta personal",w4d:"Cada cliente tiene un contacto dedicado.",
+    ctag:"Cat\u00e1logo de productos",cti:"Nuestra <em>gama</em>",
+    htag:"El proceso",hti:"Pedir es <em>simple</em>",
+    s1t:"Explorar",s1d:"Explore nuestra gama y anote las l\u00edneas y cantidades.",
+    s2t:"Enviar consulta",s2d:"Complete nuestro formulario con sus requisitos.",
+    s3t:"Recibir cotizaci\u00f3n",s3d:"Le enviaremos una hoja de precios en 24 horas.",
+    s4t:"Confirmar y enviar",s4d:"Confirme su pedido y enviamos con seguimiento completo.",
+    kontag:"Cont\u00e1ctenos",konti:"\u00bfListo para <em>pedir a escala?</em>",
+    konsub:"Complete el formulario y nuestro equipo responder\u00e1 con una cotizaci\u00f3n en 1 d\u00eda h\u00e1bil.",
+    fw:"Coffee Wholesale",fs:"Distribuidor Independiente",
+    copy:"\u00a9 2025 Coffee Wholesale \u00b7 Todos los derechos reservados",dir:"ltr"
   }
 };
 
-function setLang(lang) {
-  var t = L[lang]; if (!t) return;
-  document.documentElement.setAttribute('dir', t.dir);
-  document.documentElement.setAttribute('lang', lang);
-
-  document.querySelectorAll('.lang-btn').forEach(function(b) {
-    b.classList.toggle('active', b.textContent.trim().toLowerCase() === lang);
+function setLang(lang){
+  var t=L[lang]; if(!t) return;
+  document.documentElement.setAttribute("dir",t.dir);
+  document.documentElement.setAttribute("lang",lang);
+  document.querySelectorAll(".lang-btn").forEach(function(b){
+    b.classList.toggle("active",b.textContent.trim().toLowerCase()===lang);
   });
-
-  function el(id)  { return document.getElementById(id); }
-  function qs(sel) { return document.querySelector(sel); }
-  function qsa(sel){ return document.querySelectorAll(sel); }
-
-  var pb = el('promo-bar');
-  if (pb) pb.innerHTML = t.promo + '<button onclick="this.parentElement.style.display=\'none\'" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.7);font-size:1.1rem;cursor:pointer">×</button>';
-
-  var disc = qs('.disc'); if (disc) disc.innerHTML = t.disc;
-
-  if(el('nav_products')) el('nav_products').textContent = t.np;
-  if(el('nav_how'))      el('nav_how').textContent      = t.nh;
-  if(el('nav_contact'))  el('nav_contact').textContent  = t.nc;
-  if(el('nav-cta-btn'))  el('nav-cta-btn').textContent  = t.nb;
-
-  var ht = qs('.htitle'); if(ht) ht.innerHTML   = t.ht;
-  var hd = qs('.hdesc');  if(hd) hd.textContent = t.hd;
-  var b1 = qs('.bp');     if(b1) b1.textContent = t.b1;
-
-  var stags   = qsa('.stag');
-  var stitles = qsa('.stitle');
-  if(stags[0])   stags[0].textContent   = t.wtag;
-  if(stitles[0]) stitles[0].innerHTML   = t.wti;
-
-  var wt = qsa('.wtitle'), wd = qsa('.wtext');
-  var ww = [[t.w1t,t.w1d],[t.w2t,t.w2d],[t.w3t,t.w3d],[t.w4t,t.w4d]];
+  var pb=document.getElementById("promo-bar");
+  if(pb) pb.innerHTML=t.promo+"<button onclick=\"this.parentElement.style.display='none'\" style=\"position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.7);font-size:1.1rem;cursor:pointer\">\u00d7</button>";
+  var dc=document.querySelector(".disc"); if(dc) dc.innerHTML=t.disc;
+  var enp=document.getElementById("nav_products"); if(enp) enp.textContent=t.np;
+  var enh=document.getElementById("nav_how"); if(enh) enh.textContent=t.nh;
+  var enc=document.getElementById("nav_contact"); if(enc) enc.textContent=t.nc;
+  var enb=document.getElementById("nav-cta-btn"); if(enb) enb.textContent=t.nb;
+  var ht=document.querySelector(".htitle"); if(ht) ht.innerHTML=t.ht;
+  var hd=document.querySelector(".hdesc"); if(hd) hd.textContent=t.hd;
+  var b1=document.querySelector(".bp"); if(b1) b1.textContent=t.b1;
+  var stags=document.querySelectorAll(".stag");
+  var sti=document.querySelectorAll(".stitle");
+  if(stags[0]) stags[0].textContent=t.wtag;
+  if(sti[0]) sti[0].innerHTML=t.wti;
+  var wt=document.querySelectorAll(".wtitle");
+  var wd=document.querySelectorAll(".wtext");
+  var ww=[[t.w1t,t.w1d],[t.w2t,t.w2d],[t.w3t,t.w3d],[t.w4t,t.w4d]];
   ww.forEach(function(d,i){ if(wt[i]) wt[i].textContent=d[0]; if(wd[i]) wd[i].textContent=d[1]; });
-
-  if(stags[1])   stags[1].textContent   = t.ctag;
-  if(stitles[1]) stitles[1].innerHTML   = t.cti;
-  if(stags[2])   stags[2].textContent   = t.htag;
-  if(stitles[2]) stitles[2].innerHTML   = t.hti;
-
-  var steps = qsa('.step');
-  var ss = [[t.s1t,t.s1d],[t.s2t,t.s2d],[t.s3t,t.s3d],[t.s4t,t.s4d]];
+  if(stags[1]) stags[1].textContent=t.ctag;
+  if(sti[1]) sti[1].innerHTML=t.cti;
+  if(stags[2]) stags[2].textContent=t.htag;
+  if(sti[2]) sti[2].innerHTML=t.hti;
+  var steps=document.querySelectorAll(".step");
+  var ss=[[t.s1t,t.s1d],[t.s2t,t.s2d],[t.s3t,t.s3d],[t.s4t,t.s4d]];
   ss.forEach(function(d,i){
     if(!steps[i]) return;
-    var a=steps[i].querySelector('.stept'), b=steps[i].querySelector('.stepd');
+    var a=steps[i].querySelector(".stept"),b=steps[i].querySelector(".stepd");
     if(a) a.textContent=d[0]; if(b) b.textContent=d[1];
   });
-
-  if(stags[3])   stags[3].textContent   = t.kontag;
-  if(stitles[3]) stitles[3].innerHTML   = t.konti;
-  var ksub = qs('.consec p'); if(ksub) ksub.textContent = t.konsub;
-
-  var fwm = qs('footer .wm'); if(fwm) fwm.textContent = t.fw;
-  var fsb = qs('footer .sub'); if(fsb) fsb.textContent = t.fs;
-  var fcp = qs('.footer-bottom'); if(fcp) fcp.textContent = t.copy;
+  if(stags[3]) stags[3].textContent=t.kontag;
+  if(sti[3]) sti[3].innerHTML=t.konti;
+  var ks=document.querySelector(".consec p"); if(ks) ks.textContent=t.konsub;
+  var fw=document.querySelector("footer .wm"); if(fw) fw.textContent=t.fw;
+  var fs=document.querySelector("footer .sub"); if(fs) fs.textContent=t.fs;
+  var fc=document.querySelector(".footer-bottom"); if(fc) fc.textContent=t.copy;
 }
 </script>
+
 </body>
-</html>
