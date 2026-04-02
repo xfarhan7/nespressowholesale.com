@@ -1036,120 +1036,7 @@ function doSub(e){e.preventDefault();const t=document.getElementById('toast');t.
 @media(max-width:480px){#cw-box{width:calc(100vw - 20px);right:10px}#cw-btn{right:14px;bottom:14px}}
 </style>
 
-<script>
-var cw_busy = false;
 
-function cw_chip(el) {
-  document.getElementById('cw-chips').style.display = 'none';
-  cw_go(el.textContent);
-}
-
-function cw_send() {
-  var inp = document.getElementById('cw-inp');
-  var t = inp.value.trim();
-  if (!t || cw_busy) return;
-  inp.value = '';
-  cw_go(t);
-}
-
-function cw_go(t) {
-  cw_busy = true;
-  cw_add_user(t);
-  cw_show_typing();
-  setTimeout(function() {
-    cw_hide_typing();
-    cw_add_bot(cw_reply(t.toLowerCase()));
-    cw_busy = false;
-  }, 700 + Math.random() * 500);
-}
-
-function cw_add_bot(txt) {
-  var el = document.getElementById('cw-msgs');
-  var d = document.createElement('div');
-  d.className = 'cw-b';
-  d.innerHTML = txt.replace(/
-/g, '<br>');
-  if (txt.indexOf('enquiry form') > -1) {
-    var a = document.createElement('div');
-    a.style.marginTop = '.4rem';
-    a.innerHTML = '<a href="#contact" onclick="document.getElementById('cw-box').style.display='none'" style="display:inline-block;background:#2a6b7c;color:#fff;padding:.25rem .7rem;border-radius:6px;font-size:.72rem;text-decoration:none;font-family:sans-serif">Open Enquiry Form &rarr;</a>';
-    d.appendChild(a);
-  }
-  el.appendChild(d);
-  el.scrollTop = el.scrollHeight;
-}
-
-function cw_add_user(txt) {
-  var el = document.getElementById('cw-msgs');
-  var d = document.createElement('div');
-  d.className = 'cw-u';
-  d.textContent = txt;
-  el.appendChild(d);
-  el.scrollTop = el.scrollHeight;
-}
-
-function cw_show_typing() {
-  var el = document.getElementById('cw-msgs');
-  var d = document.createElement('div');
-  d.className = 'cw-typ'; d.id = 'cw-typ';
-  d.innerHTML = '<span></span><span></span><span></span>';
-  el.appendChild(d); el.scrollTop = el.scrollHeight;
-}
-
-function cw_hide_typing() {
-  var t = document.getElementById('cw-typ');
-  if (t) t.remove();
-}
-
-function cw_reply(q) {
-  if (q.match(/hello|hi|hey|morning|afternoon|help|start|who/))
-    return "Hello! Great to hear from you 
-I can help with:
-- Our capsule range
-- Wholesale pricing & quotes
-- Worldwide delivery
-- How to place an order
-
-What can I help you with?";
-  if (q.match(/capsule|product|supply|range|original|vertuo|flavou|variety|what do you/))
-    return "We supply the full Original Line range  -  intensities 5 to 13  -  including Master Origin and Barista Creations, plus the complete Vertuo range in all cup sizes.
-
-All available in carton and pallet quantities. Want the full product list? Fill in our enquiry form!";
-  if (q.match(/price|cost|quote|pricing|rate|how much|wholesale|tarif/))
-    return "Our pricing is volume-based with tiered wholesale rates. Every client gets a tailored quote based on their requirements.
-
-Fill in our enquiry form and we will get back to you within 1 business day!";
-  if (q.match(/minimum|moq|min order|smallest|least|small order/))
-    return "We work with trade buyers from single carton orders up to full pallets. Minimum quantities depend on the product.
-
-Tell us what you need in the enquiry form and we will confirm straight away!";
-  if (q.match(/ship|deliver|worldwide|country|location|global|international|europe|middle|asia|uk/))
-    return "Yes  -  we ship worldwide! EU, UK, Middle East, Asia and beyond. We arrange pallet freight, air freight or sea freight depending on your destination and order size.";
-  if (q.match(/how.*order|place.*order|start|begin|buy|purchase|process/))
-    return "Simple 4-step process:
-1. Fill in our enquiry form
-2. Receive a tailored quote within 1 business day
-3. Confirm your order
-4. We dispatch with full tracking
-
-Ready to get started?";
-  if (q.match(/dispatch|lead time|how long|when|delivery time|days|week/))
-    return "Dispatch time depends on the quantity and product mix  -  we confirm the exact lead time with your quote.
-
-Fill in the enquiry form to get started!";
-  if (q.match(/hotel|office|caf|restaurant|resell|hospitality|corporate|business/))
-    return "We work with hotels, offices, cafes, restaurants and wholesale resellers worldwide. Whatever your volume, we can accommodate it.
-
-Fill in the enquiry form and tell us about your business!";
-  if (q.match(/nespresso|affiliated|official|nestle|genuine|brand/))
-    return "Coffee Wholesale is an independent wholesale distributor. We are not affiliated with Nestle Nespresso S.A. We supply genuine capsules to trade buyers worldwide.";
-  if (q.match(/contact|email|phone|reach|speak|call|talk|get in touch/))
-    return "The best way to reach us is through the enquiry form on this page. Fill it in and our team will respond within 1 business day!";
-  if (q.match(/thank|thanks|great|perfect|awesome|good/))
-    return "You are welcome! Is there anything else I can help you with?";
-  return "Thanks for your question! For the most accurate answer, please fill in our enquiry form  -  our team will get back to you with everything you need within 1 business day.";
-}
-</script>
 
 
 <!-- LIGHTBOX -->
@@ -1343,6 +1230,106 @@ function setLang(lang){
   var fw=document.querySelector("footer .wm"); if(fw) fw.textContent=t.fw;
   var fs=document.querySelector("footer .sub"); if(fs) fs.textContent=t.fs;
   var fc=document.querySelector(".footer-bottom"); if(fc) fc.textContent=t.copy;
+}
+</script>
+
+
+<script>
+var cwBusy = false;
+
+function cw_chip(el) {
+  document.getElementById('cw-chips').style.display = 'none';
+  cw_go(el.textContent);
+}
+
+function cw_send() {
+  var inp = document.getElementById('cw-inp');
+  var t = inp ? inp.value.trim() : '';
+  if (!t || cwBusy) return;
+  inp.value = '';
+  cw_go(t);
+}
+
+function cw_key(e) {
+  if (e.key === 'Enter') { e.preventDefault(); cw_send(); }
+}
+
+function cw_go(t) {
+  cwBusy = true;
+  cw_add_user(t);
+  cw_show_typing();
+  setTimeout(function() {
+    cw_hide_typing();
+    cw_add_bot(cw_reply(t.toLowerCase()));
+    cwBusy = false;
+  }, 800);
+}
+
+function cw_add_user(txt) {
+  var el = document.getElementById('cw-msgs');
+  if (!el) return;
+  var d = document.createElement('div');
+  d.className = 'cw-u';
+  d.textContent = txt;
+  el.appendChild(d);
+  el.scrollTop = el.scrollHeight;
+}
+
+function cw_add_bot(txt) {
+  var el = document.getElementById('cw-msgs');
+  if (!el) return;
+  var d = document.createElement('div');
+  d.className = 'cw-b';
+  d.innerHTML = txt.replace(/\n/g, '<br>');
+  if (txt.indexOf('enquiry form') > -1) {
+    var btn = document.createElement('a');
+    btn.href = '#contact';
+    btn.textContent = 'Open Enquiry Form';
+    btn.style.cssText = 'display:inline-block;margin-top:.45rem;background:#2a6b7c;color:#fff;padding:.28rem .75rem;border-radius:6px;font-size:.72rem;text-decoration:none;font-family:sans-serif';
+    btn.addEventListener('click', function() {
+      document.getElementById('cw-box').style.display = 'none';
+    });
+    d.appendChild(btn);
+  }
+  el.appendChild(d);
+  el.scrollTop = el.scrollHeight;
+}
+
+function cw_show_typing() {
+  var el = document.getElementById('cw-msgs');
+  if (!el) return;
+  var d = document.createElement('div');
+  d.className = 'cw-typ'; d.id = 'cw-typ';
+  d.innerHTML = '<span></span><span></span><span></span>';
+  el.appendChild(d);
+  el.scrollTop = el.scrollHeight;
+}
+
+function cw_hide_typing() {
+  var t = document.getElementById('cw-typ');
+  if (t) t.remove();
+}
+
+function cw_reply(q) {
+  if (q.match(/hello|hi|hey|morning|afternoon|good/))
+    return "Hi there! Welcome to Coffee Wholesale. I can help with product info, pricing and orders.\n\nFor detailed pricing and availability, fill in our enquiry form and our team will respond within 1 business day.";
+  if (q.match(/capsule|product|original|vertuo|range|flavou|variety|ispirazione|barista|master/))
+    return "We supply the full Nespresso Original Line range including Ispirazione Italiana, Master Origin and Barista Creations, plus the complete Vertuo range.\n\nFor a full product list and availability, fill in our enquiry form!";
+  if (q.match(/price|cost|quote|pricing|how much|wholesale|bulk|rate/))
+    return "All pricing is based on volume and tailored per client. We do not list prices publicly.\n\nFill in our enquiry form and we will send you a personalised quote within 1 business day.";
+  if (q.match(/minimum|moq|min|smallest|least|small order/))
+    return "We work with buyers from single carton orders up to full pallets.\n\nFill in our enquiry form with your required quantities and we will confirm straight away.";
+  if (q.match(/ship|deliver|worldwide|country|global|europe|middle|asia|usa|location/))
+    return "Yes, we ship worldwide including the EU, UK, Middle East, USA and Asia. We arrange pallet, air or sea freight.\n\nFill in our enquiry form with your destination for a delivery quote!";
+  if (q.match(/order|start|begin|buy|purchase|how/))
+    return "Ordering is simple:\n1. Fill in our enquiry form\n2. Receive a quote within 1 business day\n3. Confirm your order\n4. We dispatch with full tracking";
+  if (q.match(/hotel|office|cafe|restaurant|hospitality|corporate|resell/))
+    return "We supply hotels, offices, cafes, restaurants and wholesale resellers worldwide.\n\nFill in our enquiry form and tell us about your business for a tailored offer.";
+  if (q.match(/contact|email|phone|reach|speak|call/))
+    return "The best way to reach us is through our enquiry form. Our team responds within 1 business day.";
+  if (q.match(/thank|thanks|great|perfect|good|awesome/))
+    return "You are welcome! Fill in our enquiry form anytime and we will get back to you quickly.";
+  return "For pricing, availability and any other questions, please fill in our enquiry form. Our team will get back to you with a full answer within 1 business day.";
 }
 </script>
 
